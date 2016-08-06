@@ -1,64 +1,54 @@
-<?php
-$n = 10;
-$arr = [];
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP Request</title>
+</head>
+<body>
+    <form method="post">
+        <p>
+            <label for="size">Array size</label>
+            <input type="text" name="size" id="size" value="<?=isset($_REQUEST['size']) ? $_REQUEST['size'] : ''?>">
+        </p>
+        <p>
+            <label for="min">Min value</label>
+            <input type="text" name="min" id="min" value="<?=isset($_REQUEST['min']) ? $_REQUEST['min'] : ''?>">
+        </p>
+        <p>
+            <label for="max">Max value</label>
+            <input type="text" name="max" id="max" value="<?=isset($_REQUEST['max']) ? $_REQUEST['max'] : ''?>">
+        </p>
+        <p>
+            <input type="submit" name="submit" value="Generate">
+        </p>
+    </form>
 
-for ($i = 1; $i <= $n; $i += 3){
-    $arr[] = $i;
-}
+    <?php
+       /* echo "POST";
+        var_dump($_POST);
 
-var_dump($arr);
+        echo "GET";
+        var_dump($_GET);*/
 
-$sum = 0;
-foreach ($arr as $item){
-    $sum += $item;
-}
-echo $sum;
+        /*echo "REQUEST";
+        var_dump($_REQUEST);*/
+        
 
-echo "<br>";
-
-$n = 10;
-$arZero = [];
-for ($i = 0; $i < $n; $i++){
-    if($i%2 == 0)
-        $arZero[] = 0;
-    else
-        $arZero[] = 1;
-}
-var_dump($arZero);
-
-echo "<hr>";
-
-$n = 20;
-$arr = [];
-
-for ($i = 1; $i <= $n; $i++){
-    $arr[] = rand(-20, 20);
-}
-var_dump($arr);
-
-$flag = false;
-for ($i = 0; $i < $n; $i++){
-    for ($j = $i + 1; $j < $n; $j++){
-        if($arr[$i] == $arr[$j]){
-            $flag = true;
-            break;
+        if($_REQUEST['submit']){
+            if(count($_REQUEST) == 4){
+                if($_REQUEST['size'] && $_REQUEST['min'] && $_REQUEST['max']){
+                    if($_REQUEST['min'] < $_REQUEST['max']){
+                        $array = [];
+                        for ($i = 0; $i < intval($_REQUEST['size']); $i++){
+                            $array[] = rand($_REQUEST['min'], $_REQUEST['max']);
+                        }
+                        var_dump($array);
+                    }else{
+                        echo "min должен быть меньше max";
+                    }
+                }
+            }
         }
-    }
-    if($flag == true){
-        break;
-    }
-}
-
-echo $flag == true ? "yes" : 'no';
-
-$arInput = [1,2,4,4,2,5];
-
-$arOutput = [];
-
-foreach ($arInput as $item){
-    if(!in_array($item, $arOutput)){
-        $arOutput[] = $item;
-    }
-}
-var_dump($arInput);
-var_dump($arOutput);
+    ?>
+</body>
+</html>
