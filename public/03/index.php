@@ -1,86 +1,162 @@
 <?php
-//константы
+$a = 23;//integer
+$b = 3.14;//float
+$c = "hello, i am string";//string
+$d = true;//boolean (true/false)
+$f = array();//array []
+$g = null;//null
 
-define('PI', 3.1415927);//способ 1
-
-const NAME = "Evgeniy";//способ 2
-
-//обращение к константам
-echo PI, "<br>", NAME;
-
-echo "<hr>";
-
-echo __FILE__, "<br>", __DIR__;//стандартные константы
-
-echo "<hr>";
-
-$t = "0";
-echo "t = $t ­­ ".gettype($t)."<br>";
-$t += 2;
-echo "t = $t ­­ ".gettype($t)."<br>";
-$t = $t + 3.5;
-echo "t = $t ­­ ".gettype($t)."<br>";
-$t = 5 + "5 поросят";
-echo "t = $t ­­ ".gettype($t)."<br>";
-$t = 5.0 + "5 поросят";
-echo "t = $t ­­ ".gettype($t);
+echo gettype($a), "<br>";
+echo gettype($b), "<br>";
+echo gettype($c), "<br>";
+echo gettype($d), "<br>";
+echo gettype($f), "<br>";
+echo gettype($g), "<br>";
 
 echo "<hr>";
+//settype($a, 'string');//$a = '23';
+echo gettype($a), "<br>";
+echo gettype((string)$a), "<br>";
+echo gettype($a), "<br>";
+echo "<hr>";
+//+, -, /, *, %
 
-$t = "Всем"; // переменной t присваиваем значение "Всем"
-$$t="привет!";// Переменной "Всем" присваиваем значение "привет!"
-echo "$$t ".$$t."<br>";
-echo "$t ${$t}<br>";
-echo "$t $Всем";
+$a = 4;
+$b = 6;
+
+$x = $a + $b;
+
+echo $a++, "<br>";
+echo $a, "<br>";
+
+echo ++$b, "<br>";
+echo $b, "<br>";
 
 echo "<hr>";
-//передача переменной по ссылке
-/*$t1 = 96;
-$t2 = &​$t1;
-echo "t1 = $t1; t2 = $t2";
-$t1 = 315;
-echo "t1 = $t1; t2 = $t2";*/
+define('PI', 3.14);
 
-$str = "12345";
-is_numeric($str);
+echo PI, "<br>";
 
-//if
+const MY_PI = 3.15;
 
-$a = 2;
-$b = 3;
+echo MY_PI, "<br>";
 
-if($a < $b && $b == 2 || $a < 3){
-    echo "$a > $b";
+$a = '1';
+$b = 2;
+echo $a + $b, "<br>";
+
+$b += 18;
+
+echo $b, "<br>";
+
+$c = &$b;
+
+echo $c, "<br>";
+
+$b = 34;
+
+echo $c, "<br>";
+
+unset($c, $b);
+
+$b = 400;
+
+echo $b, "<br>";
+
+echo "<hr>";
+$a = 2; $b = 5;
+if($a > $b){
+    echo '$a больше $b';
 }else{
-    echo "$a не больше $b";
+    echo '$a не больше $b';
+}
+echo "<hr>";
+$a = '5'; $b = 5;
+if($a > $b){
+    echo '$a больше $b';
+}elseif($a < $b){
+    echo '$a не больше $b';
+}else{
+    echo '$a равно $b';
 }
 
 echo "<hr>";
-
-if($a > $b xor $b == 3){
-    echo "True";
+$a = '5'; $b = 5;
+if($a == $b){
+    echo "OK";
 }else{
-    echo "False";
+    echo "Error";
 }
 
 echo "<hr>";
-$a = 2;
-$b = 3;
-
-if($a < $b):
-    echo "$a > $b";
-else:
-    echo "$a не больше $b";
-endif;
+$a = '5'; $b = 5;
+if($a === $b){
+    echo "OK";
+}else{
+    echo "Error";
+}
 
 echo "<hr>";
-//тернарный оператор
+$a = '5'; $b = 5;
+if($a != $b){
+    echo "OK";
+}else{
+    echo "Error";
+}
 
-echo $a > $b ? 'true' : 'false';
+echo "<hr>";
+$a = '5'; $b = 5;
+if($a !== $b){
+    echo "OK";
+}else{
+    echo "Error";
+}
+
+echo "<hr>";
+$a = 5;
+$b = !!$a;
+echo gettype($b), "<br>";
+if(!!$a){
+    echo "OK";
+}else{
+    echo 'Error';
+}
+echo "<hr>";
+
+$var = 45;
+$var1 = 43;
+
+$wtf = 'var';
+
+echo $$wtf, "<br>";
+//------------------------
+$req = 'var1';
+echo $$req, "<br>";//аналогично нижнему коду
+
+if($req == 'var'){
+    echo $var;
+}elseif($req == 'var1'){
+    echo $var1;
+}
+//-------------------------
 
 echo "<hr>";
 
-if(true)
-    echo "true........";
-else
-    echo "false........";
+$a = isset($z) ? $z: 0;//тернарный оператор
+
+if(isset($z)){
+    $a = $z;
+}else{
+    $a = 0;
+}
+?>
+<?if($a == 0):?>
+    <span style="color:red;"><?=$a?></span>
+    <div>
+        <?if(true):?>
+            <span>Lorem ipsum dolor sit.</span>
+        <?else:?>
+            sdfsdf
+        <?endif?>
+    </div>
+<?endif?>
